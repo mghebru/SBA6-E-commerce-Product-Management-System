@@ -1,7 +1,9 @@
 import { calculateDiscount } from "../utils/discountCalculator";
 import { calculateTax } from "../utils/taxCalculator";
 
+//represents a product in the system
 export class Product {
+  //new product instance
   constructor(
     public id: number,
     public title: string,
@@ -12,6 +14,7 @@ export class Product {
     public stock: number
   ) {}
 
+  //calculate price after applying discounts
   getPriceWithDiscount(): number {
     const discountAmount = calculateDiscount(
       this.price,
@@ -20,6 +23,7 @@ export class Product {
     return this.price - discountAmount;
   }
 
+  //format product details and display to the console
   displayDetails(): void {
     const discountedPrice = this.getPriceWithDiscount();
     const tax = calculateTax(discountedPrice, this.category);
